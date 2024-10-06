@@ -56,6 +56,43 @@ To build and run the project using Docker:
 Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## License
+## Usage
+
+1. **Start the development server**:
+    ```bash
+    npm start
+    ```
+
+2. **Access the application**:
+    Open your browser and go to `http://localhost:3000`.
+
+3. **Set up the Flask server**:
+    Create a file named `app.py` and add the following code:
+    ```python
+    from flask import Flask, request, jsonify
+
+    app = Flask(__name__)
+
+    @app.route('/generate', methods=['POST'])
+    def generate():
+        data = request.json
+        prompt = data.get('prompt')
+        response = get_gpt4_response(prompt)
+        return jsonify({'response': response})
+
+    if __name__ == '__main__':
+        app.run(debug=True)
+    ```
+
+4. **Run the Flask server**:
+    ```bash
+    python app.py
+    ```
+
+5. **Send a request to the Flask server**:
+    You can use tools like `curl` or Postman to send a POST request to `http://localhost:5000/generate` with a JSON body containing the prompt.
+
+Feel free to adjust the instructions to better fit your project's setup. Let me know if you need any more help!
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
